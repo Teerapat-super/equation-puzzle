@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="เกมต่อจิ๊กซอว์ฝึกแก้สมการเชิงเส้นตัวแปรเดียว 5 ด่าน สำหรับนักเรียนมัธยมศึกษาตอนต้น">
+<meta name="description" content="เกมต่อจิ๊กซอว์ฝึกแก้สมการเชิงเส้นตัวแปรเดียว ม.1 — 6 ด้าน ด้านละ 5 ข้อ จับเวลา และกราฟพัฒนาการ">
 <meta name="theme-color" content="#d9ccff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%F0%9F%A7%A9%3C/text%3E%3C/svg%3E">
 <title>Equation Puzzle: ภารกิจพิชิตสมการ</title>
@@ -187,6 +187,69 @@ table.res td:nth-child(2){white-space:nowrap;font-size:.92em}
 .res-note{font-size:.85rem;color:var(--muted);margin-top:-6px}
 .confetti{position:fixed;top:-12px;width:10px;height:14px;z-index:60;pointer-events:none;border-radius:3px;animation:fall linear forwards}
 
+/* ---------- ชื่อผู้เล่น & เลือกด้าน ---------- */
+.name-card{max-width:520px;margin:18px auto 6px;text-align:left}
+.name-card label{font-weight:700;color:var(--ink);display:block;margin-bottom:6px}
+.name-row{display:flex;gap:8px}
+.inp{font:inherit;font-size:1.08rem;flex:1;min-width:0;padding:11px 16px;border-radius:999px;border:2px solid #d6c8fb;background:#fff;color:var(--ink)}
+.inp:focus{outline:3px solid var(--lav);outline-offset:1px}
+.inp.need{border-color:var(--bad);animation:shake .4s ease}
+.name-hint{font-size:.85rem;color:var(--muted);margin-top:6px}
+.section-title{font-size:1.15rem;margin:22px 0 10px;color:var(--ink);text-align:center}
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;text-align:left}
+.topic-card{font:inherit;color:var(--ink);cursor:pointer;border:3px solid #fff;border-radius:24px;padding:14px 16px;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;transition:transform .12s;min-height:132px}
+.topic-card:hover{transform:translateY(-3px)}
+.topic-card:active{transform:translateY(1px)}
+.topic-card .t-top{display:flex;align-items:center;gap:8px}
+.topic-card .t-icon{font-size:1.9rem;line-height:1}
+.topic-card .t-no{font-size:.8rem;color:var(--muted);font-weight:700}
+.topic-card .t-name{font-size:1.12rem;font-weight:700;line-height:1.25}
+.topic-card .t-ex{font-size:1rem;margin-top:4px}
+.topic-card .t-stat{font-size:.82rem;color:var(--muted);margin-top:auto;padding-top:6px}
+.tc-1{background:#e2f8ea}.tc-2{background:#fff3c4}.tc-3{background:#dff1ff}.tc-4{background:#ffe0ef}.tc-5{background:#ece3ff}
+.tc-6{background:linear-gradient(135deg,#e2f8ea,#fff3c4 30%,#dff1ff 55%,#ffe0ef 80%,#ece3ff)}
+.home-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+.home-actions .btn{min-width:200px}
+#timer{font-variant-numeric:tabular-nums}
+
+/* ---------- หน้าพัฒนาการ ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 12px}
+.filters label{font-weight:700;color:var(--ink);font-size:.95rem}
+.sel{font:inherit;font-size:1rem;padding:8px 14px;border-radius:999px;border:2px solid #d6c8fb;background:#fff;color:var(--ink);max-width:100%}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tab{font:inherit;font-size:.92rem;font-weight:600;padding:7px 12px;border-radius:999px;border:2px solid #fff;background:rgba(255,255,255,.7);color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:#7b5cd6;color:#fff;border-color:#7b5cd6}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:12px}
+.tile{background:#fff;border-radius:18px;padding:10px 12px;border:2px solid #f0eaff}
+.tile .k{font-size:.8rem;color:var(--muted)}
+.tile .v{font-size:1.45rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.3}
+.tile .d{font-size:.82rem;font-weight:600}
+.up{color:#1f8a5f}.down{color:#c0416f}.flat{color:var(--muted)}
+.trend{background:#fff;border-radius:18px;padding:12px 14px;border-left:8px solid #c4b0fb;line-height:1.7;margin-bottom:12px}
+.chart-card{background:#fbf9ff;border-radius:20px;padding:12px 12px 6px;margin-bottom:12px;border:2px solid #fff;position:relative}
+.chart-card h3{font-size:1.02rem;margin:0 0 2px}
+.chart-card .sub{font-size:.82rem;color:var(--muted);margin-bottom:4px}
+.chart-card svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-card svg text{font-family:inherit;fill:#7d6fa3;font-size:12px}
+.chart-card svg .lbl{fill:#3d2f63;font-weight:700;font-size:13px}
+.chart-card svg .pt{cursor:pointer}
+.chart-card svg .pt:focus{outline:none}
+.chart-card svg .pt:focus .ring,.chart-card svg .pt:hover .ring{stroke:#3d2f63;stroke-width:2}
+.tip{position:absolute;pointer-events:none;background:#fff;border:2px solid #e4dbfb;border-radius:12px;padding:6px 10px;font-size:.85rem;
+  box-shadow:var(--shadow);color:var(--muted);white-space:nowrap;z-index:3;display:none}
+.tip b{display:block;color:var(--ink);font-size:1.05rem}
+.tbl-wrap{overflow-x:auto}
+.hist{width:100%;border-collapse:collapse;font-size:.92rem;min-width:440px}
+.hist th,.hist td{padding:7px 6px;border-bottom:2px dashed #e4dbfb;text-align:center;font-variant-numeric:tabular-nums}
+.hist th{color:var(--muted);font-weight:600}
+.empty{text-align:center;color:var(--muted);padding:24px 8px;line-height:1.8}
+.note-box{font-size:.85rem;color:var(--muted);line-height:1.7;margin-top:10px}
+.row-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.row-btns .btn{flex:1;min-width:150px;font-size:.98rem}
+.btn.danger{background:#fff;color:#c0416f;border:2px solid #f7b6cf;box-shadow:none}
+.compare{margin:10px auto 4px;max-width:440px;padding:10px 14px;border-radius:18px;background:#fff;line-height:1.7;font-weight:600}
+
 @keyframes pop{0%{transform:scale(.85);opacity:.4}60%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
 @keyframes snap{0%{transform:scale(1.12)}50%{transform:scale(.95)}100%{transform:scale(1)}}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
@@ -204,22 +267,22 @@ table.res td:nth-child(2){white-space:nowrap;font-size:.92em}
 </head>
 <body>
 
-<!-- ================= หน้าเริ่มเกม ================= -->
+<!-- ================= หน้าเริ่มเกม: กรอกชื่อ + เลือกด้าน ================= -->
 <section id="screen-start" class="screen active">
   <div class="wrap hero">
     <div class="logo">🧩</div>
     <h1 class="title">Equation Puzzle<span>ภารกิจพิชิตสมการ</span></h1>
-    <p class="subtitle">ต่อจิ๊กซอว์ทีละขั้น แก้สมการเชิงเส้นตัวแปรเดียวให้สำเร็จ</p>
-    <div class="chips">
-      <span class="chip">🌱 ด่าน 1 · สมการสองขั้นตอน</span>
-      <span class="chip">⚡ ด่าน 2 · จำนวนลบ</span>
-      <span class="chip">⚖️ ด่าน 3 · ตัวแปรสองข้าง</span>
-      <span class="chip">🧩 ด่าน 4 · วงเล็บ</span>
-      <span class="chip">👑 ด่าน 5 · วงเล็บสองข้าง</span>
+    <p class="subtitle">ฝึกแก้สมการเชิงเส้นตัวแปรเดียว ม.1 · ด้านละ 5 ข้อ</p>
+    <div class="card name-card">
+      <label for="player-name">👤 ชื่อผู้เล่น / เลขที่</label>
+      <div class="name-row"><input class="inp" id="player-name" maxlength="40" autocomplete="off" placeholder="เช่น ต้นข้าว ม.1/2 เลขที่ 7"></div>
+      <div class="name-hint">ใช้ชื่อเดิมทุกครั้ง เพื่อให้ระบบบันทึกเวลาและแสดงกราฟพัฒนาการได้ถูกต้อง</div>
     </div>
-    <div class="btn-col">
-      <button class="btn" id="btn-start">▶ เริ่มเล่น</button>
-      <button class="btn secondary" id="btn-howto">📖 วิธีเล่น</button>
+    <h2 class="section-title">เลือกด้านที่ต้องการฝึก</h2>
+    <div class="topic-grid" id="topic-grid"></div>
+    <div class="home-actions">
+      <button class="btn secondary" id="btn-stats">📈 ดูพัฒนาการ</button>
+      <button class="btn ghost" id="btn-howto">📖 วิธีเล่น</button>
     </div>
   </div>
 </section>
@@ -230,21 +293,21 @@ table.res td:nth-child(2){white-space:nowrap;font-size:.92em}
     <div class="card howto">
       <h2>📖 วิธีเล่น</h2>
       <ol>
-        <li><b>ดูสมการ</b> บนกระดาน ฝั่งซ้าย <span class="sl">(สีฟ้า)</span> และฝั่งขวา <span class="sr">(สีส้ม)</span> ของเครื่องหมาย =</li>
+        <li><b>กรอกชื่อ</b> แล้ว<b>เลือกด้าน</b>ที่ต้องการฝึก (6 ด้าน ด้านละ 5 ข้อ ด้านที่ 6 เป็นแบบผสม)</li>
+        <li><b>ดูสมการ</b> บนกระดาน ฝั่งซ้าย <span class="sl">(สีฟ้า)</span> และฝั่งขวา <span class="sr">(สีชมพู)</span> ของเครื่องหมาย =</li>
         <li><b>ลากชิ้นส่วนการดำเนินการ</b> เช่น −5, ÷3 ไปวางในช่อง<b>ใต้ฝั่งซ้ายและใต้ฝั่งขวา</b> ต้องเป็นชิ้นเดียวกันทั้งสองข้าง (บนมือถือ: แตะชิ้นส่วน แล้วแตะช่องที่จะวาง)</li>
-        <li>กด <b>✔ ตรวจคำตอบ</b> ระบบจะตรวจว่าขั้นตอนรักษาความเท่ากันของสมการหรือไม่</li>
-        <li><b>จัดรูปสมการ</b> โดยเลือกการ์ดสมการที่คำนวณถูกต้องไปวางในช่อง “สมการใหม่”</li>
+        <li>กด <b>✔ ตรวจขั้นตอน</b> ระบบจะตรวจว่าขั้นตอนรักษาความเท่ากันของสมการหรือไม่</li>
+        <li><b>จัดรูปสมการ</b> โดยเลือกการ์ดสมการที่คำนวณถูกต้องไปวางในช่อง “สมการใหม่” (ถ้ามีวงเล็บ ใช้การ์ดนี้กระจายวงเล็บได้)</li>
         <li>ทำซ้ำจน x อยู่ตัวเดียว แล้ววาง<b>ชิ้นคำตอบ</b>ในช่องคำตอบสุดท้าย ระบบจะแทนค่ากลับในสมการตั้งต้นเพื่อตรวจ</li>
-        <li>แตะชิ้นที่วางแล้วในช่อง เพื่อเอาออก · ปุ่ม 💡 ให้คำใบ้ทีละขั้น · ปุ่ม ↺ เริ่มด่านนี้ใหม่</li>
+        <li>⏱ ระบบ<b>จับเวลาทุกข้อ</b> (หยุดนับเมื่อสลับไปแอปอื่น) และบันทึกเมื่อทำครบ 5 ข้อ ดูกราฟได้ที่ปุ่ม <b>📈 ดูพัฒนาการ</b></li>
       </ol>
       <div class="score-rules">
-        🏆 <b>คะแนนต่อด่าน</b>: ไม่ใช้คำใบ้ 100 · ใช้คำใบ้ 80<br>
+        🏆 <b>คะแนนต่อข้อ</b>: ไม่ใช้คำใบ้ 100 · ใช้คำใบ้ 80<br>
         ลองผิดหัก 5 ต่อครั้ง แต่ไม่ต่ำกว่า 50 (แก้จนถูกก็ยังผ่านได้)<br>
-        ผ่านครบ 5 ด่าน (เต็ม 500) รับเหรียญ 🥇 ≥ 450 · 🥈 ≥ 350 · 🥉 ต่ำกว่านั้น
+        ครบ 5 ข้อ (เต็ม 500) รับเหรียญ 🥇 ≥ 450 · 🥈 ≥ 350 · 🥉 ต่ำกว่านั้น
       </div>
       <div class="btn-col">
-        <button class="btn" id="btn-start2">▶ เริ่มเล่นเลย</button>
-        <button class="btn ghost" id="btn-back">← กลับ</button>
+        <button class="btn ghost" id="btn-back">← กลับไปเลือกด้าน</button>
       </div>
     </div>
   </div>
@@ -259,7 +322,7 @@ table.res td:nth-child(2){white-space:nowrap;font-size:.92em}
         <div class="lvl-badge" id="lvl-badge"></div>
         <div class="progress" id="progress"><span></span><span></span><span></span><span></span><span></span></div>
       </div>
-      <div class="score-box"><div class="score-label">คะแนนรวม</div><div class="score-val" id="score-total">0</div></div>
+      <div class="score-box"><div class="score-label">คะแนน</div><div class="score-val" id="score-total">0</div></div>
     </header>
     <div class="problem-line"><span>โจทย์: <b id="problem"></b></span><span id="stats"></span></div>
 
@@ -304,23 +367,49 @@ table.res td:nth-child(2){white-space:nowrap;font-size:.92em}
   </div>
 </section>
 
-<!-- ================= หน้าสรุปผลรอบ ================= -->
+<!-- ================= หน้าสรุปผลรอบ (5 ข้อ) ================= -->
 <section id="screen-final" class="screen">
   <div class="wrap">
     <div class="card" style="text-align:center">
       <div class="medal" id="final-medal">🥇</div>
       <h2 id="final-title"></h2>
+      <div class="mini" id="final-topic"></div>
       <div class="big-score" id="final-score"></div>
-      <div class="mini">คะแนนรวมจาก 500</div>
+      <div class="mini">คะแนนรวมจาก 500 · ⏱ เวลารวม <b id="final-time"></b></div>
+      <div class="compare" id="final-compare"></div>
       <table class="res">
-        <thead><tr><th>ด่าน</th><th>โจทย์</th><th>คะแนน</th><th title="คำใบ้">💡</th><th title="ลองผิด">✗</th></tr></thead>
+        <thead><tr><th>ข้อ</th><th>โจทย์</th><th>เวลา</th><th>คะแนน</th><th title="คำใบ้">💡</th><th title="ลองผิด">✗</th></tr></thead>
         <tbody id="final-rows"></tbody>
       </table>
       <div class="res-note">💡 = จำนวนคำใบ้ที่ใช้ · ✗ = จำนวนครั้งที่ลองผิด</div>
       <div class="btn-col">
-        <button class="btn" id="btn-newround">🔀 เล่นรอบใหม่ (สุ่มโจทย์ใหม่)</button>
-        <button class="btn ghost" id="btn-tohome">🏠 กลับหน้าแรก</button>
+        <button class="btn" id="btn-again">🔀 เล่นด้านนี้อีกครั้ง (สุ่มโจทย์ใหม่)</button>
+        <button class="btn secondary" id="btn-final-stats">📈 ดูกราฟพัฒนาการ</button>
+        <button class="btn ghost" id="btn-tohome">🏠 เลือกด้านอื่น</button>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= หน้าพัฒนาการ (กราฟ + ประวัติ) ================= -->
+<section id="screen-stats" class="screen">
+  <div class="wrap">
+    <header class="hud">
+      <button class="icon-btn" id="btn-stats-home" aria-label="กลับหน้าแรก">🏠</button>
+      <div class="hud-mid"><h2 style="margin:0">📈 พัฒนาการการแก้สมการ</h2></div>
+    </header>
+    <div class="card">
+      <div class="filters">
+        <label for="stats-player">👤 ผู้เล่น</label>
+        <select class="sel" id="stats-player"></select>
+      </div>
+      <div class="tabs" id="stats-tabs" role="tablist" aria-label="เลือกด้าน"></div>
+      <div id="stats-body"></div>
+      <div class="row-btns">
+        <button class="btn secondary" id="btn-export">⬇ ส่งออก CSV (ทุกคน)</button>
+        <button class="btn danger" id="btn-clear">🗑 ลบประวัติของผู้เล่นนี้</button>
+      </div>
+      <div class="note-box">🔒 ข้อมูลบันทึกไว้ใน<b>เบราว์เซอร์ของเครื่องนี้เท่านั้น</b> (ไม่ส่งไปที่ใด) ถ้านักเรียนเล่นคนละเครื่อง ครูใช้ปุ่ม “ส่งออก CSV” จากแต่ละเครื่องแล้วรวมใน Excel / Google Sheets ได้ · การล้างข้อมูลเบราว์เซอร์หรือโหมดไม่ระบุตัวตนจะทำให้ประวัติหายไป</div>
     </div>
   </div>
 </section>
@@ -662,21 +751,36 @@ const Engine={Frac,L,N,linearOf,isCanonical,opKey,opEq,applyOpNode,applyOpLin,co
    UI / สถานะเกม
    ========================================================= */
 const $=s=>document.querySelector(s);
-const NUM_LEVELS=5;
+const Q_PER_TOPIC=5;                 // จำนวนข้อต่อด้าน
+const NUM_LEVELS=Q_PER_TOPIC;
 const LEVELS=[null,
   {icon:'🌱',en:'Two-Step',th:'นักต่อสมการสองขั้น'},
   {icon:'⚡',en:'Negative',th:'นักล่าเครื่องหมายลบ'},
   {icon:'⚖️',en:'Balance',th:'นักถ่วงดุลสองฝั่ง'},
   {icon:'🧩',en:'Brackets',th:'นักไขวงเล็บ'},
   {icon:'👑',en:'Master',th:'ปรมาจารย์สมการ'}];
-const G={round:null,idx:0,results:[],total:0,cur:null,pieces:[],slots:{opL:null,opR:null,simp:null,ans:null},selected:null,lastKey:null};
+/* ด้าน (หัวข้อ) ที่เลือกได้: ด้าน 1–5 ใช้ตัวสร้างโจทย์ระดับเดียวกัน 5 ข้อ, ด้าน 6 ผสมทุกระดับ เรียงง่าย → ยาก */
+const TOPICS=[
+  {id:1,icon:'🌱',name:'สมการสองขั้นตอน',ex:'4x − 7 = 21 · x/3 + 2 = 6',levels:[1,1,1,1,1]},
+  {id:2,icon:'⚡',name:'จำนวนลบ',ex:'−3x + 7 = 19',levels:[2,2,2,2,2]},
+  {id:3,icon:'⚖️',name:'ตัวแปรอยู่ทั้งสองข้าง',ex:'−2x + 5 = 3x − 10',levels:[3,3,3,3,3]},
+  {id:4,icon:'🧩',name:'สมการที่มีวงเล็บ',ex:'3(x + 2) = x + 14',levels:[4,4,4,4,4]},
+  {id:5,icon:'👑',name:'วงเล็บทั้งสองข้าง',ex:'4(x − 1) = 2(x + 3)',levels:[5,5,5,5,5]},
+  {id:6,icon:'🎲',name:'แบบผสม (ทบทวนทุกด้าน)',ex:'ด้าน 1 → 5 อย่างละ 1 ข้อ',levels:[1,2,3,4,5]}];
+const topicById=id=>TOPICS.find(t=>t.id===id);
+const G={topic:null,player:'',round:null,idx:0,results:[],total:0,cur:null,pieces:[],slots:{opL:null,opR:null,simp:null,ans:null},selected:null,lastKey:null};
 
 function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id===id)); window.scrollTo(0,0); }
 
 /* ---------- รอบ & ด่าน ---------- */
-function newRound(){
-  let r,key,guard=0;
-  do{ r=LEVELS.slice(1).map((_,i)=>genProblem(i+1)); key=r.map(p=>eqKey(p.orig)).join('|'); }while(key===G.lastKey&&++guard<20);
+function newRound(topicId){
+  if(topicId) G.topic=topicById(topicId);
+  const t=G.topic; let r,key,guard=0;
+  do{ // สุ่ม 5 ข้อ ไม่ซ้ำกันภายในรอบ และไม่ซ้ำชุดรอบก่อน
+    const seen=new Set(); r=[];
+    for(const lv of t.levels){ let p,g=0; do{ p=genProblem(lv); }while(seen.has(eqKey(p.orig))&&++g<50); seen.add(eqKey(p.orig)); r.push(p); }
+    key=r.map(p=>eqKey(p.orig)).join('|');
+  }while(key===G.lastKey&&++guard<20);
   G.lastKey=key; G.round=r; G.idx=0; G.results=[]; G.total=0;
   startLevel(false); show('screen-game');
 }
@@ -685,8 +789,10 @@ function startLevel(keepCounts){
   G.cur={problem:p,state:{L:p.orig.L,R:p.orig.R},phase:'operate',lastOp:null,
     hints:keepCounts?prev.hints:0,wrong:keepCounts?prev.wrong:0,stepHint:0,stepWrong:0,
     log:[{html:eqHTML(p.orig),note:'โจทย์'}]};
+  if(!keepCounts) Timer.reset();       // เริ่มข้อใหม่ = เริ่มจับเวลาใหม่ (กด ↺ เริ่มใหม่ เวลายังนับต่อ)
+  Timer.start();
   updatePhase(); clearSlots(); buildPieces(); renderAll(true);
-  setFeedback(keepCounts?'เริ่มด่านนี้ใหม่แล้ว (จำนวนคำใบ้และครั้งที่ลองผิดยังนับรวม)':
+  setFeedback(keepCounts?'เริ่มข้อนี้ใหม่แล้ว (เวลา คำใบ้ และครั้งที่ลองผิดยังนับรวม)':
     'ลากชิ้นส่วนไปวางในช่องใต้<b>ฝั่งซ้ายและฝั่งขวา</b> หรือแตะชิ้นส่วนแล้วแตะช่องที่จะวาง','info');
 }
 function updatePhase(){
@@ -710,12 +816,12 @@ function buildPieces(){
 /* ---------- Render ---------- */
 function renderAll(pop){ renderHUD(); renderBoard(pop); renderSlots(); renderTray(); renderLog(); }
 function renderHUD(){
-  const c=G.cur, lv=LEVELS[c.problem.level];
-  $('#lvl-badge').textContent=`${lv.icon} ด่าน ${G.idx+1}/${NUM_LEVELS} · ${lv.en} — ${lv.th}`;
+  const c=G.cur, t=G.topic;
+  $('#lvl-badge').textContent=`ข้อ ${G.idx+1}/${Q_PER_TOPIC} · ${t.icon} ด้าน ${t.id}: ${t.name}`;
   [...$('#progress').children].forEach((s,i)=>{ s.className=i<G.idx?'done':i===G.idx?'cur':''; });
   $('#score-total').textContent=G.total;
   $('#problem').innerHTML=eqHTML(c.problem.orig);
-  $('#stats').textContent=`💡 ${c.hints} · ✗ ${c.wrong}`;
+  $('#stats').innerHTML=`⏱ <span id="timer">${fmtTime(Timer.sec())}</span> · 💡 ${c.hints} · ✗ ${c.wrong}`;
 }
 function renderBoard(pop){
   const c=G.cur, step=c.log.length;
@@ -876,25 +982,43 @@ function onHint(){ const c=G.cur; c.hints++; c.stepHint++; renderHUD(); setFeedb
 
 /* ---------- จบด่าน / จบรอบ ---------- */
 function levelComplete(r){
-  const c=G.cur, sc=levelScore(c.hints,c.wrong);
-  G.total+=sc; G.results.push({level:c.problem.level,html:eqHTML(c.problem.orig),score:sc,hints:c.hints,wrong:c.wrong});
+  Timer.stop();
+  const c=G.cur, sc=levelScore(c.hints,c.wrong), sec=Timer.sec();
+  G.total+=sc; G.results.push({level:c.problem.level,html:eqHTML(c.problem.orig),eq:plainText(eqHTML(c.problem.orig)),score:sc,hints:c.hints,wrong:c.wrong,sec});
   renderHUD(); confetti();
-  const last=G.idx===NUM_LEVELS-1, lv=LEVELS[c.problem.level];
-  $('#modal-body').innerHTML=`<div class="logo">${lv.icon}</div><h2>ผ่านด่าน ${G.idx+1}/${NUM_LEVELS}!</h2>
-    <div class="mini">${lv.en} — ${lv.th}</div><div class="big-score">+${sc}</div>
-    <div class="mini">💡 ใช้คำใบ้ ${c.hints} ครั้ง · ✗ ลองผิด ${c.wrong} ครั้ง</div>
+  const last=G.idx===Q_PER_TOPIC-1, lv=LEVELS[c.problem.level];
+  $('#modal-body').innerHTML=`<div class="logo">${lv.icon}</div><h2>ผ่านข้อ ${G.idx+1}/${Q_PER_TOPIC}!</h2>
+    <div class="mini">${G.topic.icon} ${G.topic.name}</div><div class="big-score">+${sc}</div>
+    <div class="mini">⏱ ใช้เวลา <b>${fmtTime(sec)}</b> · 💡 คำใบ้ ${c.hints} ครั้ง · ✗ ลองผิด ${c.wrong} ครั้ง</div>
     <p>🔎 ${r.sub} ✓</p><ol class="path">${c.log.map(e=>`<li>${e.html}</li>`).join('')}</ol>`;
-  $('#modal-next').textContent=last?'🏆 ดูสรุปผลรอบนี้':'➜ ไปด่านถัดไป';
+  $('#modal-next').textContent=last?'🏆 ดูสรุปผลรอบนี้':'➜ ไปข้อถัดไป';
   $('#modal').classList.remove('hidden'); $('#modal-next').focus();
 }
 function onModalNext(){
   $('#modal').classList.add('hidden');
-  if(G.idx<NUM_LEVELS-1){ G.idx++; startLevel(false); } else showFinal();
+  if(G.idx<Q_PER_TOPIC-1){ G.idx++; startLevel(false); } else showFinal();
 }
 function showFinal(){
-  const t=G.total, m=t>=450?['🥇','เหรียญทอง — ปรมาจารย์สมการ!']:t>=350?['🥈','เหรียญเงิน — ยอดเยี่ยมมาก!']:['🥉','เหรียญทองแดง — พิชิตครบทุกด่าน!'];
+  const t=G.total, totalSec=G.results.reduce((a,r)=>a+r.sec,0);
+  const m=t>=450?['🥇','เหรียญทอง — ปรมาจารย์สมการ!']:t>=350?['🥈','เหรียญเงิน — ยอดเยี่ยมมาก!']:['🥉','เหรียญทองแดง — ทำครบทุกข้อ!'];
+  // เปรียบเทียบกับครั้งก่อนของผู้เล่นคนเดียวกัน ในด้านเดียวกัน (ก่อนบันทึกครั้งนี้)
+  const prev=Store.sessions().filter(s=>s.player===G.player&&s.topic===G.topic.id).pop();
+  Store.add({id:Date.now()+'-'+Math.random().toString(36).slice(2,7),player:G.player,topic:G.topic.id,ts:Date.now(),
+    sec:totalSec,score:t,hints:G.results.reduce((a,r)=>a+r.hints,0),wrong:G.results.reduce((a,r)=>a+r.wrong,0),
+    q:G.results.map(r=>({eq:r.eq,level:r.level,sec:r.sec,score:r.score,hints:r.hints,wrong:r.wrong}))});
   $('#final-medal').textContent=m[0]; $('#final-title').textContent=m[1]; $('#final-score').textContent=t;
-  $('#final-rows').innerHTML=G.results.map((r,i)=>`<tr><td>${i+1}</td><td>${r.html}</td><td><b>${r.score}</b></td><td>${r.hints}</td><td>${r.wrong}</td></tr>`).join('');
+  $('#final-topic').textContent=`${G.topic.icon} ด้าน ${G.topic.id}: ${G.topic.name} · ${G.player}`;
+  $('#final-time').textContent=fmtTime(totalSec);
+  let cmp;
+  if(!prev) cmp='📌 นี่คือการเล่นด้านนี้ครั้งแรก — เล่นอีกครั้งเพื่อดูพัฒนาการในกราฟ';
+  else{
+    const d=prev.sec-totalSec, ds=t-prev.score;
+    const tm=d>0?`<span class="up">⏱ เร็วขึ้น ${fmtTime(d)}</span>`:d<0?`<span class="down">⏱ ช้ากว่า ${fmtTime(-d)}</span>`:'<span class="flat">⏱ เวลาเท่าเดิม</span>';
+    const sm=ds>0?`<span class="up">คะแนน +${ds}</span>`:ds<0?`<span class="down">คะแนน ${ds}</span>`:'<span class="flat">คะแนนเท่าเดิม</span>';
+    cmp=`เทียบกับครั้งก่อน (${fmtTime(prev.sec)}, ${prev.score} คะแนน): ${tm} · ${sm}`+(d<0&&ds>=0?'<br>ไม่เป็นไร ความถูกต้องสำคัญกว่าความเร็ว 💪':'');
+  }
+  $('#final-compare').innerHTML=cmp;
+  $('#final-rows').innerHTML=G.results.map((r,i)=>`<tr><td>${i+1}</td><td>${r.html}</td><td>${fmtTime(r.sec)}</td><td><b>${r.score}</b></td><td>${r.hints}</td><td>${r.wrong}</td></tr>`).join('');
   show('screen-final'); confetti();
 }
 function confetti(){
@@ -906,18 +1030,198 @@ function confetti(){
     document.body.appendChild(s); setTimeout(()=>s.remove(),3500); }
 }
 
+/* =========================================================
+   ตัวจับเวลา: นับเฉพาะเวลาที่หน้าเกมเปิดอยู่ (หยุดเมื่อสลับแท็บ/แอป)
+   ========================================================= */
+const Timer={acc:0,t0:null,running:false,tick:null,
+  reset(){this.acc=0;this.t0=null;this.running=false;},
+  start(){ if(this.running) return; this.running=true; if(!document.hidden) this.t0=performance.now();
+    clearInterval(this.tick); this.tick=setInterval(()=>{const e=document.getElementById('timer'); if(e) e.textContent=fmtTime(this.sec());},500); },
+  stop(){ if(this.t0!==null) this.acc+=performance.now()-this.t0; this.t0=null; this.running=false; clearInterval(this.tick); },
+  pause(){ if(this.running&&this.t0!==null){ this.acc+=performance.now()-this.t0; this.t0=null; } },
+  resume(){ if(this.running&&this.t0===null) this.t0=performance.now(); },
+  ms(){ return this.acc+(this.t0!==null?performance.now()-this.t0:0); },
+  sec(){ return Math.round(this.ms()/1000); }};
+document.addEventListener('visibilitychange',()=>document.hidden?Timer.pause():Timer.resume());
+function fmtTime(s){ s=Math.max(0,Math.round(s)); const m=Math.floor(s/60), r=s%60; return m+':'+String(r).padStart(2,'0'); }
+function plainText(html){ const d=document.createElement('div'); d.innerHTML=html;
+  d.querySelectorAll('.frac').forEach(f=>f.replaceWith(f.querySelector('.fn').textContent+'/'+f.querySelector('.fd').textContent));
+  return d.textContent.replace(/\s+/g,' ').trim(); }
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+/* =========================================================
+   ที่เก็บประวัติ (localStorage ของเบราว์เซอร์นี้) — ถ้าใช้ไม่ได้ เก็บในหน่วยความจำชั่วคราว
+   ========================================================= */
+const Store={KEY:'eqp_history_v1',mem:null,
+  read(){ if(this.mem) return this.mem; let d=null; try{ d=JSON.parse(localStorage.getItem(this.KEY)||'null'); }catch(e){}
+    this.mem=(d&&Array.isArray(d.sessions))?d:{v:1,sessions:[]}; return this.mem; },
+  write(){ try{ localStorage.setItem(this.KEY,JSON.stringify(this.mem)); return true; }catch(e){ return false; } },
+  sessions(){ return this.read().sessions.slice().sort((a,b)=>a.ts-b.ts); },
+  add(s){ this.read().sessions.push(s); this.write(); },
+  players(){ return [...new Set(this.sessions().map(s=>s.player))]; },
+  clearPlayer(p){ const d=this.read(); d.sessions=d.sessions.filter(s=>s.player!==p); this.write(); },
+  lastPlayer(){ try{ return localStorage.getItem('eqp_last_player')||''; }catch(e){ return ''; } },
+  setLastPlayer(p){ try{ localStorage.setItem('eqp_last_player',p); }catch(e){} }};
+
+/* =========================================================
+   หน้าแรก: การ์ดเลือกด้าน (แสดงจำนวนครั้งที่เล่น + เวลาดีที่สุดของผู้เล่นคนนี้)
+   ========================================================= */
+function currentName(){ return $('#player-name').value.trim().replace(/\s+/g,' '); }
+function renderTopics(){
+  const name=currentName(), ss=Store.sessions().filter(s=>s.player===name);
+  $('#topic-grid').innerHTML=TOPICS.map(t=>{
+    const mine=ss.filter(s=>s.topic===t.id);
+    const stat=mine.length?`เล่นแล้ว ${mine.length} ครั้ง · เร็วที่สุด ${fmtTime(Math.min(...mine.map(s=>s.sec)))}`:'ยังไม่เคยเล่น';
+    return `<button class="topic-card tc-${t.id}" data-topic="${t.id}">
+      <span class="t-top"><span class="t-icon">${t.icon}</span><span class="t-no">ด้านที่ ${t.id} · ${Q_PER_TOPIC} ข้อ</span></span>
+      <span class="t-name">${t.name}</span><span class="t-ex">${t.ex}</span><span class="t-stat">${stat}</span></button>`;
+  }).join('');
+}
+function goHome(){ renderTopics(); show('screen-start'); }
+function startTopic(id){
+  const name=currentName(), inp=$('#player-name');
+  if(!name){ inp.classList.remove('need'); void inp.offsetWidth; inp.classList.add('need'); inp.focus();
+    inp.placeholder='กรุณากรอกชื่อก่อนเริ่มเล่นนะ'; return; }
+  G.player=name; Store.setLastPlayer(name); newRound(id);
+}
+
+/* =========================================================
+   หน้าพัฒนาการ: เลือกผู้เล่น + ด้าน → การ์ดสรุป, กราฟเวลา, กราฟคะแนน, ตารางประวัติ
+   ========================================================= */
+const ST={player:'',topic:null};
+function openStats(player,topic){
+  const players=Store.players();
+  ST.player=player&&players.includes(player)?player:(players.includes(currentName())?currentName():players[players.length-1]||'');
+  const mine=Store.sessions().filter(s=>s.player===ST.player);
+  ST.topic=topic||(mine.length?mine[mine.length-1].topic:1);
+  show('screen-stats'); renderStats();   // แสดงหน้าก่อน เพื่อวัดความกว้างจริงของกราฟ
+}
+function renderStats(){
+  const players=Store.players(), sel=$('#stats-player');
+  sel.innerHTML=players.length?players.map(p=>`<option value="${esc(p)}"${p===ST.player?' selected':''}>${esc(p)}</option>`).join(''):'<option>— ยังไม่มีข้อมูล —</option>';
+  sel.disabled=!players.length; $('#btn-clear').disabled=!players.length;
+  const mineAll=Store.sessions().filter(s=>s.player===ST.player);
+  $('#stats-tabs').innerHTML=TOPICS.map(t=>{const n=mineAll.filter(s=>s.topic===t.id).length;
+    return `<button class="tab" role="tab" data-stopic="${t.id}" aria-selected="${t.id===ST.topic}">${t.icon} ด้าน ${t.id}${n?` (${n})`:''}</button>`;}).join('');
+  const t=topicById(ST.topic), ss=mineAll.filter(s=>s.topic===ST.topic), body=$('#stats-body');
+  if(!players.length){ body.innerHTML='<div class="empty">ยังไม่มีประวัติการเล่น<br>เล่นให้ครบ 5 ข้อในด้านใดก็ได้ ระบบจะบันทึกเวลาและแสดงกราฟที่นี่</div>'; return; }
+  if(!ss.length){ body.innerHTML=`<div class="empty">${esc(ST.player)} ยังไม่เคยเล่น ${t.icon} ด้าน ${t.id}: ${t.name}<br><button class="btn" style="margin-top:10px" data-play="${t.id}">▶ เล่นด้านนี้</button></div>`; return; }
+  const first=ss[0], last=ss[ss.length-1], best=Math.min(...ss.map(s=>s.sec)), avgScore=Math.round(ss.reduce((a,s)=>a+s.score,0)/ss.length);
+  const pct=first.sec?Math.round((first.sec-last.sec)/first.sec*100):0;
+  const dCls=ss.length<2?'flat':pct>0?'up':pct<0?'down':'flat';
+  const dTxt=ss.length<2?'ยังไม่มีครั้งเทียบ':pct>0?`▼ เร็วขึ้น ${pct}% จากครั้งแรก`:pct<0?`▲ ช้าลง ${-pct}% จากครั้งแรก`:'เท่ากับครั้งแรก';
+  body.innerHTML=`
+    <div class="tiles">
+      <div class="tile"><div class="k">จำนวนครั้งที่เล่น</div><div class="v">${ss.length}</div><div class="d flat">${t.icon} ${t.name}</div></div>
+      <div class="tile"><div class="k">เวลาครั้งล่าสุด</div><div class="v">${fmtTime(last.sec)}</div><div class="d ${dCls}">${dTxt}</div></div>
+      <div class="tile"><div class="k">เร็วที่สุด</div><div class="v">${fmtTime(best)}</div><div class="d flat">เฉลี่ยข้อละ ${fmtTime(best/Q_PER_TOPIC)}</div></div>
+      <div class="tile"><div class="k">คะแนนเฉลี่ย</div><div class="v">${avgScore}</div><div class="d flat">จาก 500 · ล่าสุด ${last.score}</div></div>
+    </div>
+    <div class="trend">${trendText(ss)}</div>
+    <div class="chart-card" id="chart-time"><h3>⏱ เวลารวมต่อครั้ง (นาที:วินาที)</h3><div class="sub">เส้นลดลง = แก้สมการได้เร็วขึ้น</div></div>
+    <div class="chart-card" id="chart-score"><h3>🏆 คะแนนต่อครั้ง (เต็ม 500)</h3><div class="sub">เส้นสูงขึ้น = ใช้คำใบ้ / ลองผิดน้อยลง</div></div>
+    <h3 style="margin:14px 0 6px">📋 ประวัติการเล่น</h3>
+    <div class="tbl-wrap"><table class="hist"><thead><tr><th>ครั้ง</th><th>วันที่ เวลา</th><th>เวลารวม</th><th>คะแนน</th><th>💡</th><th>✗</th><th>เวลาแต่ละข้อ</th></tr></thead>
+    <tbody>${ss.map((s,i)=>`<tr><td>${i+1}</td><td style="white-space:nowrap">${fmtDateShort(s.ts)}</td><td><b>${fmtTime(s.sec)}</b></td><td>${s.score}</td><td>${s.hints}</td><td>${s.wrong}</td><td>${s.q.map(q=>fmtTime(q.sec)).join(' · ')}</td></tr>`).join('')}</tbody></table></div>
+    <div class="note-box">ℹ️ โจทย์สุ่มใหม่ทุกครั้ง เวลาจึงแกว่งได้บ้าง ควรดู<b>แนวโน้มจากหลายครั้ง</b>มากกว่าครั้งเดียว และพิจารณาคู่กับคะแนน (ความถูกต้อง)</div>`;
+  lineChart($('#chart-time'),ss.map((s,i)=>({x:i+1,y:s.sec,date:s.ts})),{color:'#6d4fd0',fmt:fmtTime,min:0,unit:'เวลา'});
+  lineChart($('#chart-score'),ss.map((s,i)=>({x:i+1,y:s.score,date:s.ts})),{color:'#c93a80',fmt:v=>String(Math.round(v)),min:0,max:500,ticks:5,unit:'คะแนน'});
+}
+let rsT, lastW=window.innerWidth; window.addEventListener('resize',()=>{ if(window.innerWidth===lastW) return; lastW=window.innerWidth; clearTimeout(rsT); rsT=setTimeout(()=>{ if($('#screen-stats').classList.contains('active')) renderStats(); },200); });
+function fmtDateShort(ts){ const d=new Date(ts); return `${d.getDate()}/${d.getMonth()+1}/${String(d.getFullYear()+543).slice(-2)} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
+function fmtDate(ts){ const d=new Date(ts); return d.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'})+' '+d.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}); }
+function trendText(ss){
+  if(ss.length<2) return '📌 เล่นด้านนี้อย่างน้อย <b>2 ครั้ง</b> เพื่อดูแนวโน้มพัฒนาการ';
+  const n=Math.min(3,Math.floor(ss.length/2)), avg=a=>a.reduce((x,s)=>x+s.sec,0)/a.length, avgS=a=>a.reduce((x,s)=>x+s.score,0)/a.length;
+  const early=ss.slice(0,n), late=ss.slice(-n), tE=avg(early), tL=avg(late), sE=avgS(early), sL=avgS(late);
+  const pct=Math.round((tE-tL)/tE*100);
+  const lbl=n===1?['ครั้งแรก','ครั้งล่าสุด']:[`${n} ครั้งแรก`,`${n} ครั้งล่าสุด`];
+  let t=`เฉลี่ย ${lbl[0]} <b>${fmtTime(tE)}</b> → ${lbl[1]} <b>${fmtTime(tL)}</b> `;
+  t+=pct>=10?`<span class="up">— เร็วขึ้น ${pct}% 🎉</span>`:pct<=-10?`<span class="down">— ช้าลง ${-pct}%</span>`:'<span class="flat">— ใกล้เคียงเดิม</span>';
+  t+=`<br>คะแนนเฉลี่ย ${Math.round(sE)} → ${Math.round(sL)} `+(sL-sE>=20?'<span class="up">ถูกต้องมากขึ้น ✓</span>':sE-sL>=20?'<span class="down">ใช้คำใบ้/ลองผิดมากขึ้น</span>':'<span class="flat">ใกล้เคียงเดิม</span>');
+  if(pct>=10&&sL>=sE-10) t+='<br><b>สรุป: มีพัฒนาการดีขึ้น</b> ทั้งความเร็วและความถูกต้อง 👏';
+  else if(pct>=10) t+='<br><b>สรุป:</b> เร็วขึ้น แต่ควรระวังความรอบคอบ';
+  else if(sL-sE>=20) t+='<br><b>สรุป:</b> ถูกต้องมากขึ้น ความเร็วจะตามมาเมื่อฝึกต่อ';
+  return '📊 '+t;
+}
+
+/* ---------- กราฟเส้น (SVG ล้วน ไม่ใช้ไลบรารี) : 1 ชุดข้อมูล/กราฟ, crosshair + tooltip, จุดโฟกัสด้วยคีย์บอร์ดได้ ---------- */
+function niceMax(v){ if(v<=0) return 1; const p=Math.pow(10,Math.floor(Math.log10(v))), f=v/p; return (f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10)*p; }
+function lineChart(box,pts,o){
+  // วาดตามความกว้างจริงของจอ เพื่อให้ตัวอักษรในกราฟมีขนาดจริง 12–13px ทุกอุปกรณ์
+  const W=Math.max(280,Math.round(box.clientWidth-24)),H=Math.round(Math.min(260,Math.max(190,W*.42))),ml=48,mr=22,mt=20,mb=40, iw=W-ml-mr, ih=H-mt-mb;
+  let yMax=o.max!=null?o.max:Math.max(...pts.map(p=>p.y))*1.15, yMin=o.min!=null?o.min:0;
+  let ticks=o.ticks||4;
+  if(o.max==null){ if(o.unit==='เวลา'){ const st=[30,60,120,300,600,900,1800]; const step=st.find(s=>yMax/s<=5)||1800; yMax=Math.ceil(yMax/step)*step||60; ticks=Math.max(2,Math.round(yMax/step)); } else yMax=niceMax(yMax); }
+  const n=pts.length, X=i=>ml+(n===1?iw/2:iw*i/(n-1)), Y=v=>mt+ih-(v-yMin)/(yMax-yMin)*ih;
+  let g='';
+  for(let i=0;i<=ticks;i++){ const v=yMin+(yMax-yMin)*i/ticks, y=Y(v);
+    g+=`<line x1="${ml}" x2="${W-mr}" y1="${y}" y2="${y}" stroke="${i?'#ebe5fb':'#cfc4f0'}" stroke-width="1"/>`+
+       `<text x="${ml-8}" y="${y+4}" text-anchor="end">${o.fmt(v)}</text>`; }
+  const every=Math.ceil(n/Math.max(4,Math.floor(iw/46)));
+  pts.forEach((p,i)=>{ if(i%every===0||i===n-1) g+=`<text x="${X(i)}" y="${H-mb+18}" text-anchor="middle">${p.x}</text>`; });
+  g+=`<text x="${ml+iw/2}" y="${H-4}" text-anchor="middle">ครั้งที่เล่น</text>`;
+  const path=pts.map((p,i)=>(i?'L':'M')+X(i).toFixed(1)+' '+Y(p.y).toFixed(1)).join(' ');
+  if(n>1) g+=`<path d="${path}" fill="none" stroke="${o.color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  g+=`<line class="xh" x1="0" x2="0" y1="${mt}" y2="${mt+ih}" stroke="#9a8cc6" stroke-width="1" stroke-dasharray="3 3" visibility="hidden"/>`;
+  pts.forEach((p,i)=>{ g+=`<g class="pt" tabindex="0" data-i="${i}" role="img" aria-label="ครั้งที่ ${p.x}: ${o.unit} ${o.fmt(p.y)}">
+    <circle cx="${X(i)}" cy="${Y(p.y)}" r="14" fill="transparent"/>
+    <circle class="ring" cx="${X(i)}" cy="${Y(p.y)}" r="5.5" fill="${o.color}" stroke="#fbf9ff" stroke-width="2"/></g>`; });
+  const li=n-1; g+=`<text class="lbl" x="${Math.min(X(li)+(n===1?0:-2),W-mr)}" y="${Y(pts[li].y)-12}" text-anchor="${n===1?'middle':'end'}">${o.fmt(pts[li].y)}</text>`;
+  g+=`<rect class="hit" x="${ml-10}" y="${mt}" width="${iw+20}" height="${ih}" fill="transparent"/>`;
+  box.querySelectorAll('svg,.tip').forEach(e=>e.remove());
+  box.insertAdjacentHTML('beforeend',`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="กราฟ${o.unit}ต่อครั้ง">${g}</svg><div class="tip"></div>`);
+  const svg=box.querySelector('svg'), tip=box.querySelector('.tip'), xh=svg.querySelector('.xh');
+  const showTip=i=>{ const p=pts[i], r=svg.getBoundingClientRect(), br=box.getBoundingClientRect(), sx=r.width/W;
+    xh.setAttribute('x1',X(i)); xh.setAttribute('x2',X(i)); xh.setAttribute('visibility','visible');
+    tip.innerHTML=''; const b=document.createElement('b'); b.textContent=`${o.unit} ${o.fmt(p.y)}`; tip.appendChild(b);
+    tip.appendChild(document.createTextNode(`ครั้งที่ ${p.x} · ${fmtDate(p.date)}`)); tip.style.display='block';
+    let left=r.left-br.left+X(i)*sx+12; if(left+tip.offsetWidth>br.width-4) left=r.left-br.left+X(i)*sx-tip.offsetWidth-12;
+    tip.style.left=Math.max(4,left)+'px'; tip.style.top=(r.top-br.top+Math.max(0,Y(p.y)*sx-tip.offsetHeight-8))+'px'; };
+  const hide=()=>{ tip.style.display='none'; xh.setAttribute('visibility','hidden'); };
+  const nearest=e=>{ const r=svg.getBoundingClientRect(), x=(e.clientX-r.left)*W/r.width; let bi=0,bd=1e9; pts.forEach((_,i)=>{const d=Math.abs(X(i)-x); if(d<bd){bd=d;bi=i;}}); return bi; };
+  const hit=svg.querySelector('.hit');
+  hit.addEventListener('pointermove',e=>showTip(nearest(e))); hit.addEventListener('pointerdown',e=>showTip(nearest(e)));
+  hit.addEventListener('pointerleave',e=>{ if(e.pointerType==='mouse') hide(); });
+  svg.querySelectorAll('.pt').forEach(el=>{ el.addEventListener('focus',()=>showTip(+el.dataset.i)); el.addEventListener('blur',hide); });
+}
+
+/* ---------- ส่งออก CSV (1 แถว = 1 ข้อ) เปิดใน Excel ภาษาไทยได้ ---------- */
+function exportCSV(){
+  const ss=Store.sessions(); if(!ss.length){ alert('ยังไม่มีข้อมูลให้ส่งออก'); return; }
+  const cnt={}, rows=[['ผู้เล่น','ด้าน','ชื่อด้าน','ครั้งที่','วันที่เวลา','ข้อที่','ระดับโจทย์','โจทย์','เวลา (วินาที)','คะแนนข้อ','คำใบ้','ลองผิด','เวลารวมของรอบ (วินาที)','คะแนนรวมของรอบ']];
+  for(const s of ss){ const k=s.player+'|'+s.topic; cnt[k]=(cnt[k]||0)+1; const t=topicById(s.topic), d=new Date(s.ts);
+    const dt=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    s.q.forEach((q,i)=>rows.push([s.player,s.topic,t?t.name:'',cnt[k],dt,i+1,q.level,q.eq,q.sec,q.score,q.hints,q.wrong,s.sec,s.score])); }
+  const cell=v=>{ v=String(v); if(/^[=+\-@]/.test(v)&&isNaN(v)) v="'"+v; return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v; };
+  const csv='\ufeff'+rows.map(r=>r.map(cell).join(',')).join('\r\n');
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  const now=new Date(); a.download=`equation-puzzle-${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}.csv`;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);
+}
+
 /* ---------- ผูกปุ่ม ---------- */
-$('#btn-start').onclick=newRound;
-$('#btn-start2').onclick=newRound;
+$('#player-name').value=Store.lastPlayer();
+$('#player-name').addEventListener('input',()=>{ $('#player-name').classList.remove('need'); renderTopics(); });
+$('#topic-grid').addEventListener('click',e=>{ const b=e.target.closest('[data-topic]'); if(b) startTopic(+b.dataset.topic); });
 $('#btn-howto').onclick=()=>show('screen-howto');
-$('#btn-back').onclick=()=>show('screen-start');
+$('#btn-back').onclick=goHome;
+$('#btn-stats').onclick=()=>openStats();
 $('#btn-check').onclick=onCheck;
 $('#btn-hint').onclick=onHint;
 $('#btn-restart').onclick=()=>startLevel(true);
-$('#btn-home').onclick=()=>{ if(confirm('กลับหน้าแรก? ความคืบหน้าของรอบนี้จะหายไป')) show('screen-start'); };
+$('#btn-home').onclick=()=>{ if(confirm('กลับหน้าแรก? รอบนี้ยังไม่ครบ 5 ข้อ จะไม่ถูกบันทึก')){ Timer.stop(); goHome(); } };
 $('#modal-next').onclick=onModalNext;
-$('#btn-newround').onclick=newRound;
-$('#btn-tohome').onclick=()=>show('screen-start');
+$('#btn-again').onclick=()=>newRound();
+$('#btn-final-stats').onclick=()=>openStats(G.player,G.topic.id);
+$('#btn-tohome').onclick=goHome;
+$('#btn-stats-home').onclick=goHome;
+$('#stats-player').onchange=e=>{ ST.player=e.target.value; renderStats(); };
+$('#stats-tabs').addEventListener('click',e=>{ const b=e.target.closest('[data-stopic]'); if(b){ ST.topic=+b.dataset.stopic; renderStats(); } });
+$('#stats-body').addEventListener('click',e=>{ const b=e.target.closest('[data-play]'); if(b){ $('#player-name').value=ST.player; startTopic(+b.dataset.play); } });
+$('#btn-export').onclick=exportCSV;
+$('#btn-clear').onclick=()=>{ if(ST.player&&confirm(`ลบประวัติทั้งหมดของ “${ST.player}”? (ย้อนกลับไม่ได้)`)){ Store.clearPlayer(ST.player); ST.player=''; openStats(); } };
+renderTopics();
 </script>
 </body>
 </html>
